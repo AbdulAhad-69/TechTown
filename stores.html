@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Locator - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
+
+            <div class="search-container">
+                <form action="products.html" method="GET" style="display: flex; width: 100%;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices...">
+
+                    <button type="submit"
+                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section-container" style="min-height: 60vh;">
+        <h1 class="section-title" style="text-align: center; margin-bottom: 40px;">Our Store Locations</h1>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+
+            <div style="background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee;">
+                <h3 style="color: var(--primary-orange); margin-bottom: 10px;">Mirpur Flagship</h3>
+                <p><strong>Address:</strong> Level 4, Shop 20, Shah Ali Plaza, Mirpur-10</p>
+                <p><strong>Phone:</strong> +880 1969 067 909</p>
+                <p><strong>Hours:</strong> 10 AM - 8 PM (Tue Closed)</p>
+                <button class="hero-btn" style="margin-top: 15px; padding: 8px 20px; font-size: 13px;">View Map</button>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee;">
+                <h3 style="color: var(--primary-orange); margin-bottom: 10px;">Bashundhara City</h3>
+                <p><strong>Address:</strong> Level 6, Block B, Shop 45, Panthapath</p>
+                <p><strong>Phone:</strong> +880 1700 000 000</p>
+                <p><strong>Hours:</strong> 11 AM - 9 PM (Tue Closed)</p>
+                <button class="hero-btn" style="margin-top: 15px; padding: 8px 20px; font-size: 13px;">View Map</button>
+            </div>
+
+            <div style="background: white; padding: 30px; border-radius: 8px; border: 1px solid #eee;">
+                <h3 style="color: var(--primary-orange); margin-bottom: 10px;">Jamuna Future Park</h3>
+                <p><strong>Address:</strong> Level 4, Zone A, Shop 12, Kuril</p>
+                <p><strong>Phone:</strong> +880 1800 000 000</p>
+                <p><strong>Hours:</strong> 11 AM - 9 PM (Wed Closed)</p>
+                <button class="hero-btn" style="margin-top: 15px; padding: 8px 20px; font-size: 13px;">View Map</button>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li>info@techtown.com.bd</li>
+                    <li>+880 1969 067 909</li>
+                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+</body>
+
+</html>

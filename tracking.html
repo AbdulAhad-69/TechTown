@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
+
+            <div class="search-container">
+                <form action="products.html" method="GET" style="display: flex; width: 100%;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices...">
+
+                    <button type="submit"
+                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-user"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section-container" style="max-width: 600px; min-height: 60vh; text-align: center;">
+        <h1 class="section-title" style="margin-bottom: 20px;">Track Your Order</h1>
+        <p style="margin-bottom: 30px; color: #666;">Enter your Order ID found in your confirmation email.</p>
+
+        <div style="background: white; padding: 40px; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
+            <input type="text" id="orderInput" placeholder="Enter Order ID (e.g., #12345)"
+                style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 15px; font-size: 16px;">
+            <button onclick="trackOrder()" class="hero-btn"
+                style="width: 100%; background: var(--primary-orange); color: white;">Track Now</button>
+
+            <div id="trackResult"
+                style="margin-top: 20px; display: none; padding: 15px; border-radius: 5px; background: #e8f5e9; color: #2e7d32; font-weight: bold;">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="stores.html">Store Locator</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li>info@techtown.com.bd</li>
+                    <li>+880 1969 067 909</li>
+                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+    <script>
+        function trackOrder() {
+            const id = document.getElementById('orderInput').value;
+            const result = document.getElementById('trackResult');
+
+            if (id.trim() === "") {
+                result.style.display = 'block';
+                result.style.background = '#ffebee';
+                result.style.color = '#c62828';
+                result.innerHTML = "Please enter an Order ID.";
+                return;
+            }
+
+            // Fake simulation
+            result.style.display = 'block';
+            result.style.background = '#e8f5e9';
+            result.style.color = '#2e7d32';
+            result.innerHTML = `<i class="fas fa-check-circle"></i> Order <strong>${id}</strong> is currently <strong>Out for Delivery</strong>!`;
+        }
+    </script>
+</body>
+
+</html>

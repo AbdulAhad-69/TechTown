@@ -65,9 +65,16 @@
             </div>
 
             <div class="search-container">
-                <input type="text" class="search-bar" placeholder="Search...">
-                <i class="fas fa-search search-icon"></i>
+                <form action="products.html" method="GET" style="display: flex; width: 100%;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices...">
+
+                    <button type="submit"
+                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
             </div>
+            
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Buy</a></li>
