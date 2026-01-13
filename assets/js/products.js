@@ -1,4 +1,5 @@
 const products = [
+    // --- SMARTPHONES ---
     {
         id: 1,
         name: "iPhone 13 Pro Max",
@@ -43,6 +44,7 @@ const products = [
         image: "assets/images/Xiaomi-13-Ultra.jpg",
         desc: "Camera beast. Minor usage signs."
     },
+    // --- LAPTOPS ---
     {
         id: 6,
         name: "MacBook Air M2",
@@ -78,6 +80,44 @@ const products = [
         condition: "New",
         image: "assets/images/Lenovo-ThinkPad-X1.jpg",
         desc: "Business class durability."
+    },
+    // --- CAMERAS ---
+    { 
+        id: 10, 
+        name: "Sony Alpha a6400", 
+        category: "Cameras", 
+        price: 78000, 
+        condition: "Used - Like New", 
+        image: "assets/images/Sony-Alpha-a6400.jpg", 
+        desc: "Shutter count 5k. Comes with 16-50mm kit lens." 
+    },
+    { 
+        id: 11, 
+        name: "Canon EOS R50", 
+        category: "Cameras", 
+        price: 82000, 
+        condition: "New", 
+        image: "assets/images/Canon-EOS-R50.jpg", 
+        desc: "Brand new body only. Official warranty available." 
+    },
+    // --- SMART WATCHES ---
+    { 
+        id: 12, 
+        name: "Apple Watch Ultra", 
+        category: "Smart Watches", 
+        price: 65000, 
+        condition: "Used - Good", 
+        image: "assets/images/Apple-Watch-Ultra.jpg", 
+        desc: "Battery health 100%. Minor scratch on casing." 
+    },
+    { 
+        id: 13, 
+        name: "Samsung Galaxy Watch 6", 
+        category: "Smart Watches", 
+        price: 28000, 
+        condition: "New", 
+        image: "assets/images/Samsung-Galaxy-Watch-6.jpg", 
+        desc: "Sealed box. Classic edition 47mm." 
     }
 ];
 
