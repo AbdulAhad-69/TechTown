@@ -87,7 +87,7 @@ const grid = document.getElementById('product-grid');
 if (grid) {
     function render(items) {
         if (items.length === 0) {
-            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No products found.</p>';
+            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No products found matching your search.</p>';
             document.getElementById('count').innerText = 0;
             return;
         }
@@ -107,9 +107,11 @@ if (grid) {
         document.getElementById('count').innerText = items.length;
     }
 
-    // Combined Filter & Sort Function
     function filterAndSort() {
-        // 1. Get Filter Values
+        // 1. Get Values
+        const searchInput = document.querySelector('.search-bar');
+        const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
+
         const cats = [...document.querySelectorAll('.filter-cat:checked')].map(c => c.value);
         const conds = [...document.querySelectorAll('.filter-cond:checked')].map(c => c.value);
         const min = parseInt(document.getElementById('min').value) || 0;
@@ -118,7 +120,12 @@ if (grid) {
 
         // 2. Filter Array
         let filtered = products.filter(p => {
-            return (cats.length === 0 || cats.includes(p.category)) &&
+            // Search Match (Name or Description)
+            const matchesSearch = p.name.toLowerCase().includes(searchQuery) ||
+                p.desc.toLowerCase().includes(searchQuery);
+
+            return matchesSearch &&
+                (cats.length === 0 || cats.includes(p.category)) &&
                 (conds.length === 0 || conds.includes(p.condition)) &&
                 (p.price >= min && p.price <= max);
         });
@@ -137,12 +144,23 @@ if (grid) {
     document.querySelectorAll('input').forEach(i => i.addEventListener('change', filterAndSort));
     document.getElementById('min').addEventListener('input', filterAndSort);
     document.getElementById('max').addEventListener('input', filterAndSort);
-
-    // Attach Listener to Dropdown
     document.getElementById('sort-select').addEventListener('change', filterAndSort);
 
-    // Initial Load
-    render(products);
+    // NEW: Instant Search Listener
+    const searchBar = document.querySelector('.search-bar');
+    if (searchBar) {
+        searchBar.addEventListener('input', filterAndSort);
+    }
+
+    // NEW: Check URL for search term (e.g. products.html?search=iphone)
+    const params = new URLSearchParams(window.location.search);
+    const urlSearch = params.get('search');
+    if (urlSearch && searchBar) {
+        searchBar.value = urlSearch;
+        filterAndSort(); // Run immediately
+    } else {
+        render(products);
+    }
 }
 
 // 3. LOGIC FOR DETAILS PAGE
