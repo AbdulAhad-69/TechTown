@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - TechTown</title>
+    <link rel="icon" href="assets/images/TechTown Logo1.png" type="image/png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
+
+            <div class="search-container">
+                <input type="text" class="search-bar" placeholder="Search...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" style="color: var(--primary-orange);">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+            <div class="nav-icons">
+                <i class="fas fa-user"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h3>Category</h3>
+                <label><input type="checkbox" class="filter-cat" value="Smartphones"> Smartphones</label>
+                <label><input type="checkbox" class="filter-cat" value="Laptops"> Laptops</label>
+            </div>
+            <div class="filter-group">
+                <h3>Condition</h3>
+                <label><input type="checkbox" class="filter-cond" value="New"> New</label>
+                <label><input type="checkbox" class="filter-cond" value="Used - Like New"> Used - Like New</label>
+                <label><input type="checkbox" class="filter-cond" value="Used - Good"> Used - Good</label>
+            </div>
+            <div class="filter-group">
+                <h3>Price Range</h3>
+                <div class="price-inputs">
+                    <input type="number" id="min" placeholder="Min">
+                    <input type="number" id="max" placeholder="Max">
+                </div>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div class="sort-bar">
+                <p>Showing <strong id="count">0</strong> products</p>
+                <div class="sort-options">
+                    <label>Sort by:</label>
+                    <select id="sort-select">
+                        <option value="default">Default</option>
+                        <option value="low-high">Price: Low to High</option>
+                        <option value="high-low">Price: High to Low</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="product-grid" id="product-grid"></div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="stores.html">Store Locator</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
+                    <li><a href="tel:+8801969067909">+880 1969 067 909</a></li>
+                    <li>Mirpur, Dhaka-1216</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+</body>
+
+</html>
