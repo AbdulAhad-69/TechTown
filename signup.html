@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
+
+            <div class="search-container">
+                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices..."
+                        autocomplete="off">
+                    <button type="submit"
+                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <div class="search-suggestions"></div>
+                </form>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-box" style="max-width: 500px;">
+            <h2>Create Account</h2>
+            <p>Join TechTown today</p>
+
+            <form action="index.html">
+                <div class="form-group">
+                    <label>I am a:</label>
+                    <select id="userType" onchange="toggleFields()"
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; outline: none;">
+                        <option value="customer">Customer</option>
+                        <option value="vendor">Small Vendor</option>
+                        <option value="org">Big Organization</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Full Name / Contact Person</label>
+                    <input type="text" placeholder="Enter name" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="01XXX-XXXXXX" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" placeholder="example@email.com" required>
+                </div>
+
+                <div id="vendorFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Shop Name</label>
+                        <input type="text" placeholder="e.g. Bhai Bhai Electronics">
+                    </div>
+                    <div class="form-group">
+                        <label>National ID (NID) Number</label>
+                        <input type="text" placeholder="Enter NID Number">
+                    </div>
+                </div>
+
+                <div id="orgFields" style="display: none;">
+                    <div class="form-group">
+                        <label>Company/Organization Name</label>
+                        <input type="text" placeholder="e.g. Tech Solutions Ltd.">
+                    </div>
+                    <div class="form-group">
+                        <label>Trade License Number</label>
+                        <input type="text" placeholder="Enter Trade License No.">
+                    </div>
+                    <div class="form-group">
+                        <label>Company Tax ID (BIN)</label>
+                        <input type="text" placeholder="Enter Tax ID">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" placeholder="Create a password" required>
+                </div>
+
+                <button type="submit" class="auth-btn">Sign Up & Login</button>
+
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="stores.html">Store Locator</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
+                    <li><a href="tel:+8801969067909">+880 1969 067 909</a></li>
+                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+    <script>
+        function toggleFields() {
+            const type = document.getElementById('userType').value;
+            const vendorFields = document.getElementById('vendorFields');
+            const orgFields = document.getElementById('orgFields');
+
+            // Reset both to hidden first
+            vendorFields.style.display = 'none';
+            orgFields.style.display = 'none';
+
+            // Show relevant fields
+            if (type === 'vendor') {
+                vendorFields.style.display = 'block';
+            } else if (type === 'org') {
+                orgFields.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>

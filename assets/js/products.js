@@ -138,10 +138,25 @@ const products = [
             "Weight": "1.12 kg"
         }
     },
+    {
+        id: 10,
+        name: "Asus ZenBook Pro Duo 15",
+        category: "Laptops", price: 318000, condition: "New",
+        image: "assets/images/Asus-ZenBook-Pro-Duo-15.jpg",
+        desc: "Dual screen laptop with pen support.",
+        specs: {
+            "Display": "15.6-inch OLED + 12-inch Touch",
+            "Processor": "Intel Core i7-13700H",
+            "RAM": "32GB DDR5",
+            "Storage": "1TB NVMe SSD",
+            "Graphics": "NVIDIA RTX 4060",
+            "OS": "Windows 11 Home"
+        }
+    },
 
     // --- CAMERAS ---
     {
-        id: 10,
+        id: 11,
         name: "Sony Alpha a6400",
         category: "Cameras", price: 78000, condition: "Used - Like New",
         image: "assets/images/Sony-Alpha-a6400.jpg",
@@ -156,7 +171,7 @@ const products = [
         }
     },
     {
-        id: 11,
+        id: 12,
         name: "Canon EOS R50",
         category: "Cameras", price: 82000, condition: "New",
         image: "assets/images/Canon-EOS-R50.jpg",
@@ -173,7 +188,7 @@ const products = [
 
     // --- SMART WATCHES ---
     {
-        id: 12,
+        id: 13,
         name: "Apple Watch Ultra",
         category: "Smart Watches", price: 65000, condition: "Used - Good",
         image: "assets/images/Apple-Watch-Ultra.jpg",
@@ -188,7 +203,7 @@ const products = [
         }
     },
     {
-        id: 13,
+        id: 14,
         name: "Samsung Galaxy Watch 6",
         category: "Smart Watches", price: 28000, condition: "New",
         image: "assets/images/Samsung-Galaxy-Watch-6.jpg",
