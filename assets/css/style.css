@@ -631,6 +631,76 @@ footer {
     color: #555;
 } */
 
+/* --- PRODUCT SPECS TABLE --- */
+.specs-container {
+    margin-top: 40px;
+    grid-column: 1 / -1;
+    /* Forces table to take full width below image/info */
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.specs-container h3 {
+    font-size: 20px;
+    color: var(--secondary-dark);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-orange);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.specs-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.specs-table th,
+.specs-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 15px;
+}
+
+.specs-table th {
+    width: 30%;
+    color: #555;
+    font-weight: 600;
+    background-color: #f9f9f9;
+}
+
+.specs-table td {
+    color: #333;
+    font-weight: 500;
+}
+
+.specs-table tr:last-child th,
+.specs-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+
+    .specs-table th,
+    .specs-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .specs-table th {
+        background: none;
+        padding-bottom: 0;
+        color: var(--primary-orange);
+    }
+
+    .specs-table td {
+        padding-top: 5px;
+    }
+}
+
 /* --- ABOUT PAGE STYLES --- */
 .about-hero {
     background-color: var(--secondary-dark);
