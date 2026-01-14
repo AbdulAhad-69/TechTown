@@ -22,13 +22,14 @@
 
             <div class="search-container">
                 <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
-                    <input type="text" name="search" class="search-bar" placeholder="Search devices..." autocomplete="off">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices..."
+                        autocomplete="off">
 
                     <button type="submit"
                         style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
                         <i class="fas fa-search"></i>
                     </button>
-                    
+
                     <div class="search-suggestions"></div>
                 </form>
             </div>
@@ -36,10 +37,10 @@
             <ul class="nav-links">
                 <li><a href="products.html">Buy</a></li>
                 <li><a href="#">Sell</a></li>
-                </ul>
+            </ul>
 
             <div class="nav-icons">
-                <i class="fas fa-shopping-cart"></i>
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count" style="font-size: 14px; font-weight: bold;">(0)</span></a>
                 <a href="login.html" class="fas fa-user"></a>
             </div>
         </nav>
@@ -61,7 +62,7 @@
             <i class="fas fa-mobile-alt"></i> <a href="#">Sell</a>
         </div>
 
-        </div>
+    </div>
 
     <div class="section-container">
         <div class="section-header">
@@ -168,7 +169,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
@@ -214,4 +215,5 @@
 
     <script src="assets/js/products.js"></script>
 </body>
+
 </html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="cart.html" style="color: var(--primary-orange);"class="fas fa-shopping-cart"><span
+                        id="cart-count" style="font-size: 14px; font-weight: bold;">(0)</span></a>
+                <a href="login.html" class="fas fa-user"></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section-container">
+        <h2 class="section-title">Your Shopping Cart</h2>
+
+        <div class="cart-container">
+            <div class="cart-items">
+                <table id="cartTable">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-body">
+                    </tbody>
+                </table>
+                <p id="empty-cart-msg" style="display:none; text-align:center; padding: 20px;">Your cart is empty.</p>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="summary-item">
+                    <span>Subtotal</span>
+                    <span id="sub-total">৳ 0</span>
+                </div>
+                <div class="summary-item">
+                    <span>Delivery</span>
+                    <span>৳ 120</span>
+                </div>
+                <hr style="margin: 15px 0; border: 0; border-top: 1px solid #eee;">
+                <div class="summary-item total">
+                    <span>Total</span>
+                    <span id="final-total">৳ 0</span>
+                </div>
+
+                <button onclick="alert('Proceeding to Checkout (Next Step!)')" class="auth-btn">Proceed to
+                    Checkout</button>
+                <a href="products.html"
+                    style="display:block; text-align:center; margin-top:10px; font-size:13px; color:#555;">Continue
+                    Shopping</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
+                    <li>Mirpur, Dhaka-1216</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+</body>
+
+</html>

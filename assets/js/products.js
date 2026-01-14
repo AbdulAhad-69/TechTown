@@ -329,7 +329,7 @@ if (detailContainer) {
                 <p style="margin-top: 10px;">${product.desc}</p>
                 
                 <div style="margin-top: 30px;">
-                    <button class="btn-buy" style="background-color: var(--primary-orange); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer;">Buy Now</button>
+                    <button class="btn-buy" onclick="addToCart(${product.id})" style="background-color: var(--primary-orange); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer;">Buy Now</button>
                     <button class="btn-chat" style="border: 1px solid var(--secondary-dark); background:white; color: var(--secondary-dark); padding: 15px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-left: 10px;">Chat with Seller</button>
                 </div>
             </div>
@@ -340,3 +340,134 @@ if (detailContainer) {
         detailContainer.innerHTML = '<h2>Product not found! <a href="products.html">Go Back</a></h2>';
     }
 }
+// 4. GLOBAL USER ICON LOGIC
+// This runs on every page to check if you are logged in
+document.addEventListener('DOMContentLoaded', function () {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+
+    // Select the User Icon (Works for <a class="fa-user"> in index.html and others)
+    const userIcon = document.querySelector('a.fa-user') || document.querySelector('.fa-user').parentElement;
+
+    if (user && userIcon) {
+        // If logged in, change the link to Dashboard
+        userIcon.href = 'dashboard.html';
+    }
+});
+
+// --- 5. SHOPPING CART LOGIC ---
+
+// A. Add to Cart Function
+function addToCart(productId) {
+    const product = products.find(p => p.id === productId);
+    if (!product) return;
+
+    // Get current cart from storage
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if item exists
+    const existingItem = cart.find(item => item.id === productId);
+
+    if (existingItem) {
+        existingItem.quantity += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            quantity: 1
+        });
+    }
+
+    // Save back to storage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // UI Feedback
+    alert(`${product.name} added to cart!`);
+    updateCartCount();
+}
+
+// B. Update Cart Count in Header
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const countBadge = document.getElementById('cart-count');
+    if (countBadge) countBadge.innerText = `(${totalItems})`;
+}
+
+// C. Render Cart Page (Only runs on cart.html)
+if (document.getElementById('cartTable')) {
+    function renderCart() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const tbody = document.getElementById('cart-body');
+        const emptyMsg = document.getElementById('empty-cart-msg');
+
+        tbody.innerHTML = '';
+        let subtotal = 0;
+
+        if (cart.length === 0) {
+            emptyMsg.style.display = 'block';
+        } else {
+            emptyMsg.style.display = 'none';
+
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>
+                            <div class="cart-product-info">
+                                <img src="${item.image}" alt="${item.name}">
+                                <div>
+                                    <h4 style="font-size:14px; margin-bottom:4px;">${item.name}</h4>
+                                    <small>ID: ${item.id}</small>
+                                </div>
+                            </div>
+                        </td>
+                        <td>৳ ${item.price.toLocaleString()}</td>
+                        <td>
+                            <input type="number" class="qty-input" value="${item.quantity}" min="1" onchange="updateQty(${index}, this.value)">
+                        </td>
+                        <td>৳ ${itemTotal.toLocaleString()}</td>
+                        <td><button class="remove-btn" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button></td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Update Totals
+        document.getElementById('sub-total').innerText = '৳ ' + subtotal.toLocaleString();
+        document.getElementById('final-total').innerText = '৳ ' + (subtotal + 120).toLocaleString(); // Adding fixed delivery charge
+    }
+
+    // Helper: Update Quantity
+    window.updateQty = function (index, newQty) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (newQty < 1) newQty = 1;
+        cart[index].quantity = parseInt(newQty);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+    };
+
+    // Helper: Remove Item
+    window.removeItem = function (index) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1); // Remove item at index
+        localStorage.setItem('cart', JSON.stringify(cart));
+        renderCart();
+        updateCartCount();
+    };
+
+    // Initial Render
+    renderCart();
+}
+
+// D. Initialize Cart Count on Page Load
+document.addEventListener('DOMContentLoaded', updateCartCount);
+
+// E. UPDATE "BUY NOW" BUTTON CLICK
+// Find the existing renderDetail function logic and ensure the button calls addToCart
+// (NOTE: Since your 'detail-container' code is generated dynamically in section 3,
+// we need to make sure the HTML generated there uses the onclick event.)

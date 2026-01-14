@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .dash-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            padding: 0 5%;
+        }
+
+        .dash-sidebar {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            height: fit-content;
+        }
+
+        .dash-menu a {
+            display: block;
+            padding: 10px;
+            color: #555;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .dash-menu a:hover,
+        .dash-menu a.active {
+            background: var(--primary-orange);
+            color: white;
+        }
+
+        .dash-content {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            min-height: 400px;
+        }
+
+        .dash-section {
+            display: none;
+        }
+
+        /* Hide all sections by default */
+        .dash-section.active {
+            display: block;
+        }
+
+        /* Show only active section */
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="#">Sell</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="dash-container">
+        <aside class="dash-sidebar">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <i class="fas fa-user-circle" style="font-size: 50px; color: #ccc;"></i>
+                <h3 id="dashName">User</h3>
+                <p id="dashRole" style="color: var(--primary-orange); font-size: 14px;">Role</p>
+            </div>
+            <ul class="dash-menu">
+                <li><a href="#" onclick="switchTab('overview')" class="active">Overview</a></li>
+                <li class="vendor-only"><a href="#" onclick="switchTab('my-products')">My Products</a></li>
+                <li class="vendor-only"><a href="#" onclick="switchTab('add-product')">Add Product</a></li>
+                <li class="customer-only"><a href="#" onclick="switchTab('orders')">My Orders</a></li>
+                <li><a href="#" onclick="switchTab('settings')">Settings</a></li>
+            </ul>
+        </aside>
+
+        <main class="dash-content">
+            <div id="overview" class="dash-section active">
+                <h2>Welcome Back!</h2>
+                <p>This is your personal dashboard.</p>
+            </div>
+
+            <div id="add-product" class="dash-section">
+                <h2>Post a New Ad</h2>
+                <form id="addProductForm" style="max-width: 400px; margin-top: 20px;">
+                    <div class="form-group"><label>Product Name</label><input type="text" id="pName" class="search-bar"
+                            required></div>
+                    <div class="form-group"><label>Price (Tk)</label><input type="number" id="pPrice" class="search-bar"
+                            required></div>
+                    <button class="hero-btn" style="background: var(--primary-orange); margin-top: 10px;">Post
+                        Now</button>
+                </form>
+            </div>
+
+            <div id="orders" class="dash-section">
+                <h2>My Order History</h2>
+                <p>No orders found.</p>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 1. CHECK IF LOGGED IN
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+
+        if (!user) {
+            alert("You must be logged in!");
+            window.location.href = 'login.html';
+        } else {
+            // Update Name & Role
+            document.getElementById('dashName').innerText = user.name;
+            document.getElementById('dashRole').innerText = user.type.toUpperCase();
+
+            // Hide/Show Links based on Role
+            if (user.type === 'customer') {
+                document.querySelectorAll('.vendor-only').forEach(el => el.style.display = 'none');
+            } else {
+                document.querySelectorAll('.customer-only').forEach(el => el.style.display = 'none');
+            }
+        }
+
+        // 2. LOGOUT LOGIC
+        function logout() {
+            localStorage.removeItem('currentUser'); // Clear session
+            window.location.href = 'login.html';
+        }
+
+        // 3. SWITCH TABS
+        function switchTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.dash-section').forEach(el => el.classList.remove('active'));
+            // Show target section
+            document.getElementById(tabId).classList.add('active');
+        }
+        // 4. ADD PRODUCT LOGIC
+        document.getElementById('addProductForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const product = {
+                name: document.getElementById('pName').value,
+                price: parseFloat(document.getElementById('pPrice').value),
+                seller: user.email
+            };
+
+            let products = JSON.parse(localStorage.getItem('products')) || [];
+            products.push(product);
+            localStorage.setItem('products', JSON.stringify(products));
+
+            alert('Product added successfully!');
+            document.getElementById('addProductForm').reset();
+        });
+    </script>
+</body>
+
+</html>
