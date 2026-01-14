@@ -1,4 +1,4 @@
-// 1. THE DATA SET
+// 1. THE DATA SET (Hardcoded Products)
 const products = [
     // --- SMARTPHONES ---
     {
@@ -7,14 +7,7 @@ const products = [
         category: "Smartphones", price: 67000, condition: "Used - Like New",
         image: "assets/images/Apple-iPhone-13-Pro-Max.jpg",
         desc: "Battery Health 98%. Comes with box and cable.",
-        specs: {
-            "Display": "6.7-inch Super Retina XDR OLED",
-            "Processor": "A15 Bionic chip",
-            "RAM": "6GB",
-            "Storage": "128GB",
-            "Battery": "4352 mAh (98% Health)",
-            "Camera": "12MP Pro Triple System"
-        }
+        specs: { "Display": "6.7-inch OLED", "Processor": "A15 Bionic", "RAM": "6GB", "Storage": "128GB", "Battery": "98% Health" }
     },
     {
         id: 2,
@@ -22,14 +15,7 @@ const products = [
         category: "Smartphones", price: 85500, condition: "Used - Good",
         image: "assets/images/Samsung-Galaxy-S23-Ultra.jpg",
         desc: "Korean variant. Minor scratches on bezel.",
-        specs: {
-            "Display": "6.8-inch Dynamic AMOLED 2X",
-            "Processor": "Snapdragon 8 Gen 2",
-            "RAM": "12GB",
-            "Storage": "256GB",
-            "Battery": "5000 mAh",
-            "Camera": "200MP Quad Camera"
-        }
+        specs: { "Display": "6.8-inch AMOLED", "Processor": "Snapdragon 8 Gen 2", "RAM": "12GB", "Storage": "256GB", "Camera": "200MP" }
     },
     {
         id: 3,
@@ -37,14 +23,7 @@ const products = [
         category: "Smartphones", price: 55000, condition: "Used - Fair",
         image: "assets/images/Google-Pixel-7-Pro.jpg",
         desc: "Device only. No issues with camera.",
-        specs: {
-            "Display": "6.7-inch LTPO OLED",
-            "Processor": "Google Tensor G2",
-            "RAM": "12GB",
-            "Storage": "128GB",
-            "Battery": "5000 mAh",
-            "Camera": "50MP Triple Camera"
-        }
+        specs: { "Display": "6.7-inch OLED", "Processor": "Tensor G2", "RAM": "12GB", "Storage": "128GB" }
     },
     {
         id: 4,
@@ -52,14 +31,7 @@ const products = [
         category: "Smartphones", price: 52000, condition: "Used - Like New",
         image: "assets/images/OnePlus-11-5G.jpg",
         desc: "Full box available. 12/256GB variant.",
-        specs: {
-            "Display": "6.7-inch AMOLED 120Hz",
-            "Processor": "Snapdragon 8 Gen 2",
-            "RAM": "12GB",
-            "Storage": "256GB",
-            "Battery": "5000 mAh",
-            "Charging": "100W SuperVOOC"
-        }
+        specs: { "Display": "6.7-inch AMOLED", "Processor": "Snapdragon 8 Gen 2", "RAM": "12GB", "Storage": "256GB", "Charging": "100W" }
     },
     {
         id: 5,
@@ -67,14 +39,7 @@ const products = [
         category: "Smartphones", price: 80000, condition: "Used - Good",
         image: "assets/images/Xiaomi-13-Ultra.jpg",
         desc: "Camera beast. Minor usage signs.",
-        specs: {
-            "Display": "6.73-inch WQHD+ AMOLED",
-            "Processor": "Snapdragon 8 Gen 2",
-            "RAM": "12GB",
-            "Storage": "512GB",
-            "Camera": "50MP Leica Quad Lens",
-            "Battery": "5000 mAh"
-        }
+        specs: { "Display": "6.73-inch AMOLED", "Processor": "Snapdragon 8 Gen 2", "RAM": "12GB", "Storage": "512GB", "Camera": "Leica Lens" }
     },
 
     // --- LAPTOPS ---
@@ -84,14 +49,7 @@ const products = [
         category: "Laptops", price: 91000, condition: "New",
         image: "assets/images/MacBook-Air-M2.jpg",
         desc: "Brand new sealed pack. 1 Year Apple Warranty.",
-        specs: {
-            "Display": "13.6-inch Liquid Retina",
-            "Processor": "Apple M2 Chip (8-core CPU)",
-            "RAM": "8GB Unified Memory",
-            "Storage": "256GB SSD",
-            "Battery": "Up to 18 hours",
-            "OS": "macOS Sonoma"
-        }
+        specs: { "Display": "13.6-inch Retina", "Processor": "M2 Chip", "RAM": "8GB", "Storage": "256GB SSD", "OS": "macOS" }
     },
     {
         id: 7,
@@ -99,14 +57,7 @@ const products = [
         category: "Laptops", price: 215000, condition: "New",
         image: "assets/images/Dell-XPS-13.jpg",
         desc: "Latest gen, OLED screen.",
-        specs: {
-            "Display": "13.4-inch OLED Touch",
-            "Processor": "Intel Core i7-1260P",
-            "RAM": "16GB LPDDR5",
-            "Storage": "512GB NVMe SSD",
-            "Graphics": "Intel Iris Xe",
-            "OS": "Windows 11 Home"
-        }
+        specs: { "Display": "13.4-inch OLED", "Processor": "i7-1260P", "RAM": "16GB", "Storage": "512GB SSD", "OS": "Windows 11" }
     },
     {
         id: 8,
@@ -114,14 +65,7 @@ const products = [
         category: "Laptops", price: 140000, condition: "New",
         image: "assets/images/HP-Spectre-x360.jpg",
         desc: "Convertible laptop with pen included.",
-        specs: {
-            "Display": "13.5-inch 3K2K OLED",
-            "Processor": "Intel Core i7-1355U",
-            "RAM": "16GB LPDDR4x",
-            "Storage": "1TB SSD",
-            "Touch": "Yes (Pen Included)",
-            "Audio": "Bang & Olufsen"
-        }
+        specs: { "Display": "13.5-inch OLED", "Processor": "i7-1355U", "RAM": "16GB", "Storage": "1TB SSD", "Touch": "Yes" }
     },
     {
         id: 9,
@@ -129,14 +73,7 @@ const products = [
         category: "Laptops", price: 165000, condition: "New",
         image: "assets/images/Lenovo-ThinkPad-X1.jpg",
         desc: "Business class durability.",
-        specs: {
-            "Display": "14-inch IPS Anti-glare",
-            "Processor": "Intel Core i7 vPro",
-            "RAM": "32GB Soldered",
-            "Storage": "1TB SSD",
-            "Build": "Carbon Fiber Hybrid",
-            "Weight": "1.12 kg"
-        }
+        specs: { "Display": "14-inch IPS", "Processor": "i7 vPro", "RAM": "32GB", "Storage": "1TB SSD", "Weight": "1.12 kg" }
     },
     {
         id: 10,
@@ -144,14 +81,7 @@ const products = [
         category: "Laptops", price: 318000, condition: "New",
         image: "assets/images/Asus-ZenBook-Pro-Duo-15.jpg",
         desc: "Dual screen laptop with pen support.",
-        specs: {
-            "Display": "15.6-inch OLED + 12-inch Touch",
-            "Processor": "Intel Core i7-13700H",
-            "RAM": "32GB DDR5",
-            "Storage": "1TB NVMe SSD",
-            "Graphics": "NVIDIA RTX 4060",
-            "OS": "Windows 11 Home"
-        }
+        specs: { "Display": "15.6-inch OLED + 12-inch Touch", "Processor": "i7-13700H", "RAM": "32GB", "Storage": "1TB SSD", "Graphics": "RTX 4060" }
     },
 
     // --- CAMERAS ---
@@ -161,14 +91,7 @@ const products = [
         category: "Cameras", price: 78000, condition: "Used - Like New",
         image: "assets/images/Sony-Alpha-a6400.jpg",
         desc: "Shutter count 5k. Comes with 16-50mm kit lens.",
-        specs: {
-            "Sensor": "24.2MP APS-C Exmor CMOS",
-            "ISO Range": "100-32000",
-            "Video": "4K UHD at 30fps",
-            "Autofocus": "Real-time Eye AF",
-            "Lens Mount": "Sony E-mount",
-            "Connectivity": "Wi-Fi, NFC, Bluetooth"
-        }
+        specs: { "Sensor": "24.2MP APS-C", "Video": "4K 30fps", "Focus": "Eye AF", "Lens": "Sony E-mount" }
     },
     {
         id: 12,
@@ -176,14 +99,7 @@ const products = [
         category: "Cameras", price: 82000, condition: "New",
         image: "assets/images/Canon-EOS-R50.jpg",
         desc: "Brand new body only. Official warranty available.",
-        specs: {
-            "Sensor": "24.2MP APS-C CMOS",
-            "Processor": "DIGIC X",
-            "Video": "4K uncropped 30p",
-            "Screen": "Vari-angle Touchscreen",
-            "Lens Mount": "Canon RF Mount",
-            "Weight": "375g (Body)"
-        }
+        specs: { "Sensor": "24.2MP APS-C", "Processor": "DIGIC X", "Video": "4K 30p", "Screen": "Vari-angle Touch" }
     },
 
     // --- SMART WATCHES ---
@@ -193,14 +109,7 @@ const products = [
         category: "Smart Watches", price: 65000, condition: "Used - Good",
         image: "assets/images/Apple-Watch-Ultra.jpg",
         desc: "Battery health 100%. Minor scratch on casing.",
-        specs: {
-            "Case": "49mm Titanium",
-            "Display": "Always-On Retina (2000 nits)",
-            "Water Resistance": "100m (WR100)",
-            "Battery": "Up to 36 hours",
-            "Sensors": "Blood Oxygen, ECG, Temp",
-            "Connectivity": "GPS + Cellular"
-        }
+        specs: { "Case": "49mm Titanium", "Display": "Retina", "Water Resistance": "100m", "Connectivity": "GPS + Cellular" }
     },
     {
         id: 14,
@@ -208,21 +117,19 @@ const products = [
         category: "Smart Watches", price: 28000, condition: "New",
         image: "assets/images/Samsung-Galaxy-Watch-6.jpg",
         desc: "Sealed box. Classic edition 47mm.",
-        specs: {
-            "Case": "47mm Stainless Steel",
-            "Display": "Super AMOLED Sapphire",
-            "Bezel": "Rotating Bezel",
-            "Health": "Sleep Coaching, BIA Sensor",
-            "OS": "Wear OS 4",
-            "Battery": "425 mAh"
-        }
+        specs: { "Case": "47mm Steel", "Display": "Super AMOLED", "Health": "BIA Sensor", "OS": "Wear OS 4" }
     }
 ];
 
-// 2. LOGIC FOR SHOP PAGE
+// 2. LOGIC FOR SHOP PAGE (products.html)
 const grid = document.getElementById('product-grid');
 
 if (grid) {
+    // A. Merge Hardcoded Products + User Added Products
+    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+    const allProducts = [...products, ...userProducts];
+
+    // B. Render Function
     function render(items) {
         if (items.length === 0) {
             grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No products found.</p>';
@@ -245,6 +152,7 @@ if (grid) {
         document.getElementById('count').innerText = items.length;
     }
 
+    // C. Filter & Sort Function
     function filterAndSort() {
         const searchInput = document.querySelector('.search-bar');
         const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
@@ -254,9 +162,10 @@ if (grid) {
         const max = parseInt(document.getElementById('max').value) || 9999999;
         const sortValue = document.getElementById('sort-select').value;
 
-        let filtered = products.filter(p => {
+        // Uses 'allProducts' instead of just 'products'
+        let filtered = allProducts.filter(p => {
             const matchesSearch = p.name.toLowerCase().includes(searchQuery) ||
-                p.desc.toLowerCase().includes(searchQuery);
+                (p.desc && p.desc.toLowerCase().includes(searchQuery)); // Added safety check for desc
             return matchesSearch &&
                 (cats.length === 0 || cats.includes(p.category)) &&
                 (conds.length === 0 || conds.includes(p.condition)) &&
@@ -269,6 +178,7 @@ if (grid) {
         render(filtered);
     }
 
+    // D. Event Listeners
     document.querySelectorAll('input').forEach(i => i.addEventListener('change', filterAndSort));
     document.getElementById('min').addEventListener('input', filterAndSort);
     document.getElementById('max').addEventListener('input', filterAndSort);
@@ -277,40 +187,40 @@ if (grid) {
     const searchBar = document.querySelector('.search-bar');
     if (searchBar) searchBar.addEventListener('input', filterAndSort);
 
+    // E. Initial Load
     const params = new URLSearchParams(window.location.search);
     const urlSearch = params.get('search');
     if (urlSearch && searchBar) {
         searchBar.value = urlSearch;
         filterAndSort();
     } else {
-        render(products);
+        render(allProducts);
     }
 }
 
-// 3. LOGIC FOR DETAILS PAGE
+// 3. LOGIC FOR DETAILS PAGE (product-details.html)
 const detailContainer = document.getElementById('detail-container');
 if (detailContainer) {
     const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id'));
-    const product = products.find(p => p.id === id);
+    const id = parseInt(params.get('id')); // IDs are numbers
+
+    // Merge again to find product
+    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+    const allProducts = [...products, ...userProducts];
+
+    const product = allProducts.find(p => p.id === id);
 
     if (product) {
-        // Generate Table Rows from Specs Object
         let specsHTML = '';
         if (product.specs) {
             const rows = Object.entries(product.specs).map(([key, value]) => `
-                <tr>
-                    <th>${key}</th>
-                    <td>${value}</td>
-                </tr>
+                <tr><th>${key}</th><td>${value}</td></tr>
             `).join('');
 
             specsHTML = `
                 <div class="specs-container">
                     <h3>Technical Specifications</h3>
-                    <table class="specs-table">
-                        <tbody>${rows}</tbody>
-                    </table>
+                    <table class="specs-table"><tbody>${rows}</tbody></table>
                 </div>
             `;
         }
@@ -333,38 +243,45 @@ if (detailContainer) {
                     <button class="btn-chat" style="border: 1px solid var(--secondary-dark); background:white; color: var(--secondary-dark); padding: 15px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-left: 10px;">Chat with Seller</button>
                 </div>
             </div>
-
             ${specsHTML}
         `;
     } else {
         detailContainer.innerHTML = '<h2>Product not found! <a href="products.html">Go Back</a></h2>';
     }
 }
+
 // 4. GLOBAL USER ICON LOGIC
-// This runs on every page to check if you are logged in
 document.addEventListener('DOMContentLoaded', function () {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-
-    // Select the User Icon (Works for <a class="fa-user"> in index.html and others)
     const userIcon = document.querySelector('a.fa-user') || document.querySelector('.fa-user').parentElement;
+    const directUserLink = document.querySelector('a.fa-user');
 
-    if (user && userIcon) {
-        // If logged in, change the link to Dashboard
-        userIcon.href = 'dashboard.html';
+    // Update Cart Count
+    updateCartCount();
+
+    // Update User Icon Link
+    if (user) {
+        if (userIcon) {
+            userIcon.href = 'dashboard.html';
+            userIcon.title = `Logged in as ${user.name}`;
+        }
+        if (directUserLink) {
+            directUserLink.href = 'dashboard.html';
+            directUserLink.title = `Logged in as ${user.name}`;
+        }
     }
 });
 
-// --- 5. SHOPPING CART LOGIC ---
-
-// A. Add to Cart Function
+// 5. SHOPPING CART LOGIC
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+    // Need to find product in BOTH lists
+    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+    const allProducts = [...products, ...userProducts];
+
+    const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
-    // Get current cart from storage
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Check if item exists
     const existingItem = cart.find(item => item.id === productId);
 
     if (existingItem) {
@@ -379,15 +296,11 @@ function addToCart(productId) {
         });
     }
 
-    // Save back to storage
     localStorage.setItem('cart', JSON.stringify(cart));
-
-    // UI Feedback
     alert(`${product.name} added to cart!`);
     updateCartCount();
 }
 
-// B. Update Cart Count in Header
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -395,7 +308,7 @@ function updateCartCount() {
     if (countBadge) countBadge.innerText = `(${totalItems})`;
 }
 
-// C. Render Cart Page (Only runs on cart.html)
+// Render Cart Page (cart.html)
 if (document.getElementById('cartTable')) {
     function renderCart() {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -409,11 +322,9 @@ if (document.getElementById('cartTable')) {
             emptyMsg.style.display = 'block';
         } else {
             emptyMsg.style.display = 'none';
-
             cart.forEach((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-
                 tbody.innerHTML += `
                     <tr>
                         <td>
@@ -435,13 +346,10 @@ if (document.getElementById('cartTable')) {
                 `;
             });
         }
-
-        // Update Totals
         document.getElementById('sub-total').innerText = '৳ ' + subtotal.toLocaleString();
-        document.getElementById('final-total').innerText = '৳ ' + (subtotal + 120).toLocaleString(); // Adding fixed delivery charge
+        document.getElementById('final-total').innerText = '৳ ' + (subtotal + 120).toLocaleString();
     }
 
-    // Helper: Update Quantity
     window.updateQty = function (index, newQty) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
         if (newQty < 1) newQty = 1;
@@ -451,30 +359,19 @@ if (document.getElementById('cartTable')) {
         updateCartCount();
     };
 
-    // Helper: Remove Item
     window.removeItem = function (index) {
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.splice(index, 1); // Remove item at index
+        cart.splice(index, 1);
         localStorage.setItem('cart', JSON.stringify(cart));
         renderCart();
         updateCartCount();
     };
 
-    // Initial Render
     renderCart();
 }
 
-// D. Initialize Cart Count on Page Load
-document.addEventListener('DOMContentLoaded', updateCartCount);
-
-// E. UPDATE "BUY NOW" BUTTON CLICK
-// Find the existing renderDetail function logic and ensure the button calls addToCart
-// (NOTE: Since your 'detail-container' code is generated dynamically in section 3,
-// we need to make sure the HTML generated there uses the onclick event.)
-
-
-// --- 6. CHECKOUT LOGIC ---
-// A. Load Checkout Page Summary
+// 6. CHECKOUT LOGIC (checkout.html)
+// A. Load Summary
 if (document.getElementById('checkout-items')) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const itemList = document.getElementById('checkout-items');
@@ -483,32 +380,28 @@ if (document.getElementById('checkout-items')) {
     if (cart.length === 0) {
         alert("Your cart is empty!");
         window.location.href = "products.html";
+    } else {
+        cart.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            subtotal += itemTotal;
+            itemList.innerHTML += `
+                <div class="checkout-item-row">
+                    <span>${item.quantity}x ${item.name}</span>
+                    <span>৳ ${itemTotal.toLocaleString()}</span>
+                </div>
+            `;
+        });
+        document.getElementById('checkout-subtotal').innerText = '৳ ' + subtotal.toLocaleString();
+        document.getElementById('checkout-total').innerText = '৳ ' + (subtotal + 120).toLocaleString();
     }
-
-    // List items
-    cart.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        subtotal += itemTotal;
-        itemList.innerHTML += `
-            <div class="checkout-item-row">
-                <span>${item.quantity}x ${item.name}</span>
-                <span>৳ ${itemTotal.toLocaleString()}</span>
-            </div>
-        `;
-    });
-
-    // Update Totals
-    document.getElementById('checkout-subtotal').innerText = '৳ ' + subtotal.toLocaleString();
-    document.getElementById('checkout-total').innerText = '৳ ' + (subtotal + 120).toLocaleString();
 }
 
-// B. Handle Place Order
+// B. Confirm Order
 const checkoutForm = document.getElementById('checkoutForm');
 if (checkoutForm) {
     checkoutForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // 1. Check if logged in
         const user = JSON.parse(localStorage.getItem('currentUser'));
         if (!user) {
             alert("Please login to complete your order.");
@@ -516,34 +409,33 @@ if (checkoutForm) {
             return;
         }
 
-        // 2. Create Order Object
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const total = parseInt(document.getElementById('checkout-total').innerText.replace(/[^\d]/g, ''));
 
         const newOrder = {
-            id: 'ORD-' + Date.now(), // Unique ID
+            id: 'ORD-' + Date.now(),
             date: new Date().toLocaleDateString(),
             items: cart,
             total: total,
             status: 'Pending',
+            userEmail: user.email, // Link order to user
             shipping: {
                 name: document.getElementById('shipName').value,
                 phone: document.getElementById('shipPhone').value,
-                address: document.getElementById('shipAddress').value,
-                city: document.getElementById('shipCity').value
+                city: document.getElementById('shipCity').value,
+                address: document.getElementById('shipAddress').value
             }
         };
 
-        // 3. Save to "My Orders" (Local Storage)
+        // Save to "All Orders"
         let allOrders = JSON.parse(localStorage.getItem('allOrders')) || [];
-        allOrders.push({ userEmail: user.email, order: newOrder });
+        allOrders.push(newOrder);
         localStorage.setItem('allOrders', JSON.stringify(allOrders));
 
-        // 4. Clear Cart
+        // Clear Cart
         localStorage.removeItem('cart');
 
-        // 5. Success & Redirect
         alert("Order Placed Successfully! Order ID: " + newOrder.id);
-        window.location.href = "dashboard.html"; // Redirect to Dashboard to see the order
+        window.location.href = "dashboard.html";
     });
 }

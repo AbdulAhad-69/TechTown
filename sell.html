@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell Product - TechTown</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
+
+            <div class="search-container">
+                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices..."
+                        autocomplete="off">
+
+                    <button type="submit"
+                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                        <i class="fas fa-search"></i>
+                    </button>
+
+                    <div class="search-suggestions"></div>
+                </form>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="sell.html">Sell</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count"
+                        style="font-size: 14px; font-weight: bold;">(0)</span></a>
+                <a href="login.html" class="fas fa-user"></a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="section-container">
+        <h2 class="section-title">Post Your Ad</h2>
+
+        <div class="auth-box" style="max-width: 600px; margin: 0 auto;">
+            <form id="sellForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="pName" placeholder="e.g. iPhone 12 Pro" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="pCat" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option>Smartphones</option>
+                        <option>Laptops</option>
+                        <option>Cameras</option>
+                        <option>Smart Watches</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Condition</label>
+                    <select id="pCond" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                        <option>Used - Like New</option>
+                        <option>Used - Good</option>
+                        <option>Used - Fair</option>
+                        <option>New</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Price (Tk)</label>
+                    <input type="number" id="pPrice" placeholder="e.g. 50000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="pDesc" rows="3" placeholder="Describe your product..."
+                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;"
+                        required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Image URL (Paste a link)</label>
+                    <input type="text" id="pImage" placeholder="https://example.com/image.jpg"
+                        value="assets/images/TechTown Logo1.png">
+                    <small style="color:#777;">*Using default logo if left empty</small>
+                </div>
+
+                <button type="submit" class="auth-btn">Post Ad</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TechTown BD Ltd.</p>
+        </div>
+    </footer>
+
+    <script src="assets/js/products.js"></script>
+    <script>
+        // HANDLE SELL FORM SUBMISSION
+        document.getElementById('sellForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // 1. Create Product Object
+            const newProduct = {
+                id: Date.now(), // Generate unique ID
+                name: document.getElementById('pName').value,
+                category: document.getElementById('pCat').value,
+                condition: document.getElementById('pCond').value,
+                price: parseInt(document.getElementById('pPrice').value),
+                desc: document.getElementById('pDesc').value,
+                image: document.getElementById('pImage').value || 'assets/images/TechTown Logo1.png'
+            };
+
+            // 2. Save to Local Storage ("userProducts")
+            let userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+            userProducts.push(newProduct);
+            localStorage.setItem('userProducts', JSON.stringify(userProducts));
+
+            // 3. Success
+            alert("Ad Posted Successfully! It is now live in the Shop.");
+            window.location.href = "products.html";
+        });
+    </script>
+</body>
+
+</html>

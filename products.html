@@ -21,23 +21,27 @@
             </div>
 
             <div class="search-container">
-                <form action="products.html" method="GET" style="display: flex; width: 100%;">
-                    <input type="text" name="search" class="search-bar" placeholder="Search devices...">
+                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                    <input type="text" name="search" class="search-bar" placeholder="Search devices..."
+                        autocomplete="off">
 
                     <button type="submit"
                         style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
                         <i class="fas fa-search"></i>
                     </button>
+
+                    <div class="search-suggestions"></div>
                 </form>
             </div>
 
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="products.html" style="color: var(--primary-orange);">Buy</a></li>
-                <li><a href="#">Sell</a></li>
+                <li><a href="products.html">Buy</a></li>
+                <li><a href="sell.html">Sell</a></li>
             </ul>
+
             <div class="nav-icons">
-                <i class="fas fa-shopping-cart"></i>
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count"
+                        style="font-size: 14px; font-weight: bold;">(0)</span></a>
                 <a href="login.html" class="fas fa-user"></a>
             </div>
         </nav>
