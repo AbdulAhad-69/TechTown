@@ -471,3 +471,79 @@ document.addEventListener('DOMContentLoaded', updateCartCount);
 // Find the existing renderDetail function logic and ensure the button calls addToCart
 // (NOTE: Since your 'detail-container' code is generated dynamically in section 3,
 // we need to make sure the HTML generated there uses the onclick event.)
+
+
+// --- 6. CHECKOUT LOGIC ---
+// A. Load Checkout Page Summary
+if (document.getElementById('checkout-items')) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemList = document.getElementById('checkout-items');
+    let subtotal = 0;
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        window.location.href = "products.html";
+    }
+
+    // List items
+    cart.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        itemList.innerHTML += `
+            <div class="checkout-item-row">
+                <span>${item.quantity}x ${item.name}</span>
+                <span>৳ ${itemTotal.toLocaleString()}</span>
+            </div>
+        `;
+    });
+
+    // Update Totals
+    document.getElementById('checkout-subtotal').innerText = '৳ ' + subtotal.toLocaleString();
+    document.getElementById('checkout-total').innerText = '৳ ' + (subtotal + 120).toLocaleString();
+}
+
+// B. Handle Place Order
+const checkoutForm = document.getElementById('checkoutForm');
+if (checkoutForm) {
+    checkoutForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // 1. Check if logged in
+        const user = JSON.parse(localStorage.getItem('currentUser'));
+        if (!user) {
+            alert("Please login to complete your order.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // 2. Create Order Object
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const total = parseInt(document.getElementById('checkout-total').innerText.replace(/[^\d]/g, ''));
+
+        const newOrder = {
+            id: 'ORD-' + Date.now(), // Unique ID
+            date: new Date().toLocaleDateString(),
+            items: cart,
+            total: total,
+            status: 'Pending',
+            shipping: {
+                name: document.getElementById('shipName').value,
+                phone: document.getElementById('shipPhone').value,
+                address: document.getElementById('shipAddress').value,
+                city: document.getElementById('shipCity').value
+            }
+        };
+
+        // 3. Save to "My Orders" (Local Storage)
+        let allOrders = JSON.parse(localStorage.getItem('allOrders')) || [];
+        allOrders.push({ userEmail: user.email, order: newOrder });
+        localStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+        // 4. Clear Cart
+        localStorage.removeItem('cart');
+
+        // 5. Success & Redirect
+        alert("Order Placed Successfully! Order ID: " + newOrder.id);
+        window.location.href = "dashboard.html"; // Redirect to Dashboard to see the order
+    });
+}
