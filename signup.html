@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
-
 <body>
 
     <header>
@@ -38,22 +36,12 @@
     <div class="auth-container">
         <div class="auth-box" style="max-width: 500px;">
             <h2>Create Account</h2>
-            <p>Join TechTown today</p>
-
+            <p>Buy and Sell on TechTown</p>
+            
             <form id="signupForm">
                 <div class="form-group">
-                    <label>Select your account type:</label>
-                    <select id="userType" onchange="toggleFields()"
-                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; outline: none;">
-                        <option value="customer">Customer</option>
-                        <option value="vendor">Small Vendor</option>
-                        <option value="org">Big Organization</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label>Full Name / Contact Person</label>
-                    <input type="text" id="sName" placeholder="Enter name" required>
+                    <label>Full Name</label>
+                    <input type="text" id="sName" placeholder="Enter your name" required>
                 </div>
 
                 <div class="form-group">
@@ -66,39 +54,27 @@
                     <input type="email" id="sEmail" placeholder="example@email.com" required>
                 </div>
 
-                <div id="vendorFields" style="display: none;">
-                    <div class="form-group">
-                        <label>Shop Name</label>
-                        <input type="text" id="sShop" placeholder="e.g. Bhai Bhai Electronics">
-                    </div>
-                    <div class="form-group">
-                        <label>National ID (NID) Number</label>
-                        <input type="text" id="sNid" placeholder="Enter NID Number">
-                    </div>
-                </div>
-
-                <div id="orgFields" style="display: none;">
-                    <div class="form-group">
-                        <label>Company/Organization Name</label>
-                        <input type="text" id="sCompany" placeholder="e.g. Tech Solutions Ltd.">
-                    </div>
-                    <div class="form-group">
-                        <label>Trade License Number</label>
-                        <input type="text" id="sLicense" placeholder="Enter Trade License No.">
-                    </div>
-                    <div class="form-group">
-                        <label>Company Tax ID (BIN)</label>
-                        <input type="text" id="sTax" placeholder="Enter Tax ID">
-                    </div>
-                </div>
-
                 <div class="form-group">
                     <label>Password</label>
                     <input type="password" id="sPass" placeholder="Create a password" required>
                 </div>
 
-                <button type="submit" class="auth-btn">Sign Up</button>
+                <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <h4 style="margin-bottom: 15px; color: #555; font-size: 14px;">Business Details (Optional)</h4>
+                    <p style="font-size: 12px; color: #888; margin-bottom: 10px;">Fill this only if you are a shop or business.</p>
+                    
+                    <div class="form-group">
+                        <label>Shop / Company Name</label>
+                        <input type="text" id="sShop" placeholder="e.g. Bhai Bhai Electronics">
+                    </div>
+                    <div class="form-group">
+                        <label>Trade License / NID</label>
+                        <input type="text" id="sLicense" placeholder="License or NID number">
+                    </div>
+                </div>
 
+                <button type="submit" class="auth-btn">Sign Up</button>
+                
                 <div class="auth-footer">
                     <p>Already have an account? <a href="login.html">Login</a></p>
                 </div>
@@ -107,96 +83,42 @@
     </div>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4>About Us</h4>
-                <ul>
-                    <li><a href="about.html">Why TechTown?</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms & Conditions</a></li>
-                    <li><a href="refund.html">Refund Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Customer Service</h4>
-                <ul>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="stores.html">Store Locator</a></li>
-                    <li><a href="tracking.html">Track Order</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <ul>
-                    <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
-                    <li><a href="tel:+8801969067909">+880 1969 067 909</a></li>
-                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Follow Us</h4>
-                <ul>
-                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
-                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
-                </ul>
-            </div>
-        </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
+            <p>&copy; 2026 TechTown BD Ltd.</p>
         </div>
     </footer>
 
-    <script src="assets/js/products.js"></script>
     <script>
-        function toggleFields() {
-            const type = document.getElementById('userType').value;
-            const vendorFields = document.getElementById('vendorFields');
-            const orgFields = document.getElementById('orgFields');
-
-            // Reset both to hidden first
-            vendorFields.style.display = 'none';
-            orgFields.style.display = 'none';
-
-            // Show relevant fields
-            if (type === 'vendor') {
-                vendorFields.style.display = 'block';
-            } else if (type === 'org') {
-                orgFields.style.display = 'block';
-            }
+        // CLEAN UP OLD DATA (Once) to prevent conflicts with the new system
+        // logic: if we find users with "types", we clear them to start fresh
+        const checkOld = JSON.parse(localStorage.getItem('users')) || [];
+        if(checkOld.length > 0 && checkOld[0].type) {
+            localStorage.removeItem('users');
+            localStorage.removeItem('currentUser');
+            console.log("Old data cleared for system upgrade.");
         }
 
-        // Handles the signup logic
-        document.getElementById('signupForm').addEventListener('submit', function (e) {
-            e.preventDefault(); // Prevents reloading to index.html
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault(); 
 
-            // Collect Data
             const user = {
                 name: document.getElementById('sName').value,
                 phone: document.getElementById('sPhone').value,
                 email: document.getElementById('sEmail').value,
                 password: document.getElementById('sPass').value,
-                type: document.getElementById('userType').value,
-                // Optional fields
+                // No more "type". Everyone is just a user.
                 shopName: document.getElementById('sShop').value || "",
-                nid: document.getElementById('sNid').value || "",
-                company: document.getElementById('sCompany').value || "",
                 license: document.getElementById('sLicense').value || ""
             };
 
-            // Save to "Database" (Local Storage)
             let users = JSON.parse(localStorage.getItem('users')) || [];
             users.push(user);
             localStorage.setItem('users', JSON.stringify(users));
-
-            // Log in immediately
             localStorage.setItem('currentUser', JSON.stringify(user));
 
-            alert('Account created! Redirecting to Dashboard...');
+            alert('Account created! Welcome to TechTown.');
             window.location.href = 'dashboard.html';
         });
     </script>
 </body>
-
 </html>
