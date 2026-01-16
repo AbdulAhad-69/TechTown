@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechTown - Buy, Sell Smartphones & Electronics</title>
+    <title>TechTown - Buy Smartphones & Electronics</title>
     <link rel="icon" href="assets/images/TechTown Logo1.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -36,11 +36,11 @@
 
             <ul class="nav-links">
                 <li><a href="products.html">Buy</a></li>
-                <li><a href="sell.html">Sell</a></li>
             </ul>
 
             <div class="nav-icons">
-                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count" style="font-size: 14px; font-weight: bold;">(0)</span></a>
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count"
+                        style="font-size: 14px; font-weight: bold;">(0)</span></a>
                 <a href="login.html" class="fas fa-user"></a>
             </div>
         </nav>
@@ -49,127 +49,50 @@
     <section class="hero">
         <div class="hero-content">
             <h1>Get your desired device instantly</h1>
-            <p>Bangladesh's first e-commerce marketplace. Where you can't buy anything.</p>
+            <p>Bangladesh's first e-commerce marketplace.</p>
             <a href="products.html"><button class="hero-btn">Start Browsing</button></a>
         </div>
     </section>
 
-    <div class="quick-actions">
-        <div class="action-card">
-            <i class="fas fa-mobile-alt"></i> <a href="products.html">Buy</a>
+    <div class="quick-actions" style="justify-content: center; gap: 20px;">
+        <div class="action-card" onclick="window.location.href='products.html?category=Smartphones'">
+            <i class="fas fa-mobile-alt"></i> <span>Phones</span>
         </div>
-        <div class="action-card">
-            <i class="fas fa-mobile-alt"></i> <a href="sell.html">Sell</a>
+        
+        <div class="action-card" onclick="window.location.href='products.html?category=Laptops'">
+            <i class="fas fa-laptop"></i> <span>Laptops</span>
         </div>
 
+        <div class="action-card" onclick="window.location.href='products.html?category=Cameras'">
+            <i class="fas fa-camera"></i> <span>Cameras</span>
+        </div>
+
+        <div class="action-card" onclick="window.location.href='products.html?category=Smart Watches'">
+            <i class="fas fa-stopwatch"></i> <span>Watches</span>
+        </div>
     </div>
-
     <div class="section-container">
         <div class="section-header">
             <h2 class="section-title">Smartphone Hot Collection</h2>
-            <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+            <a href="products.html?category=Smartphones" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="assets/images/Apple-iPhone-13-Pro-Max.jpg" alt="Apple iPhone 13 Pro Max">
-                <div class="product-info">
-                    <h3>Apple iPhone 13 Pro Max</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 67,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/Samsung-Galaxy-S23-Ultra.jpg" alt="Samsung Galaxy S23 Ultra">
-                <div class="product-info">
-                    <h3>Samsung Galaxy S23 Ultra</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 85,500</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/Google-Pixel-7-Pro.jpg" alt="Google Pixel 7 Pro">
-                <div class="product-info">
-                    <h3>Google Pixel 7 Pro</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 55,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/OnePlus-11-5G.jpg" alt="OnePlus 11 5G">
-                <div class="product-info">
-                    <h3>OnePlus 11 5G</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 52,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/Xiaomi-13-Ultra.jpg" alt="Xiaomi 13 Ultra">
-                <div class="product-info">
-                    <h3>Xiaomi 13 Ultra</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 80,000</div>
-                </div>
-            </div>
+        <div class="product-grid" id="home-smartphones">
+            <p>Loading Smartphones...</p>
         </div>
     </div>
 
     <div class="section-container">
         <div class="section-header">
             <h2 class="section-title">Laptop Hot Collection</h2>
-            <a href="#" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
+            <a href="products.html?category=Laptops" class="view-all">View all <i class="fas fa-arrow-right"></i></a>
         </div>
 
-        <div class="product-grid">
-            <div class="product-card">
-                <img src="assets/images/MacBook-Air-M2.jpg" alt="MacBook Air M2">
-                <div class="product-info">
-                    <h3>MacBook Air M2</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 91,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/Dell-XPS-13.jpg" alt="Dell XPS 13">
-                <div class="product-info">
-                    <h3>Dell XPS 13</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 2,15,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/HP-Spectre-x360.jpg" alt="HP Spectre x360">
-                <div class="product-info">
-                    <h3>HP Spectre x360</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 1,40,000</div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="assets/images/Lenovo-ThinkPad-X1.jpg" alt="Lenovo ThinkPad X1">
-                <div class="product-info">
-                    <h3>Lenovo ThinkPad X1</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 1,65,000</div>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="assets/images/Asus-ZenBook-Pro-Duo-15.jpg" alt="Asus ZenBook Pro Duo 15">
-                <div class="product-info">
-                    <h3>Asus ZenBook Pro Duo 15</h3>
-                    <div class="product-meta">Starting from</div>
-                    <div class="product-price">৳ 3,18,000</div>
-                </div>
-            </div>
+        <div class="product-grid" id="home-laptops">
+            <p>Loading Laptops...</p>
         </div>
     </div>
+
     <footer>
         <div class="footer-grid">
             <div class="footer-col">

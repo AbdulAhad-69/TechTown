@@ -1,4 +1,4 @@
-// 1. THE DATA SET (Hardcoded Products)
+// 1. THE DATA SET (Hardcoded Products Only)
 const products = [
     // --- SMARTPHONES ---
     {
@@ -125,11 +125,6 @@ const products = [
 const grid = document.getElementById('product-grid');
 
 if (grid) {
-    // A. Merge Hardcoded Products + User Added Products
-    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
-    const allProducts = [...products, ...userProducts];
-
-    // B. Render Function
     function render(items) {
         if (items.length === 0) {
             grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No products found.</p>';
@@ -152,7 +147,6 @@ if (grid) {
         document.getElementById('count').innerText = items.length;
     }
 
-    // C. Filter & Sort Function
     function filterAndSort() {
         const searchInput = document.querySelector('.search-bar');
         const searchQuery = searchInput ? searchInput.value.toLowerCase() : '';
@@ -162,10 +156,10 @@ if (grid) {
         const max = parseInt(document.getElementById('max').value) || 9999999;
         const sortValue = document.getElementById('sort-select').value;
 
-        // Uses 'allProducts' instead of just 'products'
-        let filtered = allProducts.filter(p => {
+        // FILTER LOGIC
+        let filtered = products.filter(p => {
             const matchesSearch = p.name.toLowerCase().includes(searchQuery) ||
-                (p.desc && p.desc.toLowerCase().includes(searchQuery)); // Added safety check for desc
+                (p.desc && p.desc.toLowerCase().includes(searchQuery));
             return matchesSearch &&
                 (cats.length === 0 || cats.includes(p.category)) &&
                 (conds.length === 0 || conds.includes(p.condition)) &&
@@ -178,23 +172,33 @@ if (grid) {
         render(filtered);
     }
 
-    // D. Event Listeners
+    // Event Listeners
     document.querySelectorAll('input').forEach(i => i.addEventListener('change', filterAndSort));
-    document.getElementById('min').addEventListener('input', filterAndSort);
-    document.getElementById('max').addEventListener('input', filterAndSort);
-    document.getElementById('sort-select').addEventListener('change', filterAndSort);
+    const sortSelect = document.getElementById('sort-select');
+    if (sortSelect) sortSelect.addEventListener('change', filterAndSort);
 
     const searchBar = document.querySelector('.search-bar');
     if (searchBar) searchBar.addEventListener('input', filterAndSort);
 
-    // E. Initial Load
+    // Initial Load
     const params = new URLSearchParams(window.location.search);
     const urlSearch = params.get('search');
+    const urlCategory = params.get('category'); // 1. Get Category from URL
+
     if (urlSearch && searchBar) {
         searchBar.value = urlSearch;
         filterAndSort();
+    } else if (urlCategory) {
+        // 2. If Category found, check the sidebar box & filter
+        const checkboxes = document.querySelectorAll('.filter-cat');
+        checkboxes.forEach(cb => {
+            if (cb.value === urlCategory) {
+                cb.checked = true;
+            }
+        });
+        filterAndSort();
     } else {
-        render(allProducts);
+        render(products);
     }
 }
 
@@ -202,13 +206,9 @@ if (grid) {
 const detailContainer = document.getElementById('detail-container');
 if (detailContainer) {
     const params = new URLSearchParams(window.location.search);
-    const id = parseInt(params.get('id')); // IDs are numbers
+    const id = parseInt(params.get('id'));
 
-    // Merge again to find product
-    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
-    const allProducts = [...products, ...userProducts];
-
-    const product = allProducts.find(p => p.id === id);
+    const product = products.find(p => p.id === id);
 
     if (product) {
         let specsHTML = '';
@@ -253,13 +253,11 @@ if (detailContainer) {
 // 4. GLOBAL USER ICON LOGIC
 document.addEventListener('DOMContentLoaded', function () {
     const user = JSON.parse(localStorage.getItem('currentUser'));
-    const userIcon = document.querySelector('a.fa-user') || document.querySelector('.fa-user').parentElement;
+    const userIcon = document.querySelector('a.fa-user') || document.querySelector('.fa-user')?.parentElement;
     const directUserLink = document.querySelector('a.fa-user');
 
-    // Update Cart Count
     updateCartCount();
 
-    // Update User Icon Link
     if (user) {
         if (userIcon) {
             userIcon.href = 'dashboard.html';
@@ -270,15 +268,43 @@ document.addEventListener('DOMContentLoaded', function () {
             directUserLink.title = `Logged in as ${user.name}`;
         }
     }
+
+    // 7. HOMEPAGE LOGIC (Dynamic Index)
+    const homeSmartphones = document.getElementById('home-smartphones');
+    const homeLaptops = document.getElementById('home-laptops');
+
+    if (homeSmartphones || homeLaptops) {
+        function renderHomeCategory(container, category, limit) {
+            if (!container) return;
+            const filtered = products.filter(p => p.category === category).slice(0, limit);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<p>No items found.</p>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(p => `
+                <a href="product-details.html?id=${p.id}" class="product-card" style="text-decoration:none; color:inherit;">
+                    <div class="product-img">
+                        <img src="${p.image}" alt="${p.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <div class="product-meta">Starting from</div>
+                        <div class="product-price">৳ ${p.price.toLocaleString()}</div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        renderHomeCategory(homeSmartphones, 'Smartphones', 5);
+        renderHomeCategory(homeLaptops, 'Laptops', 5);
+    }
 });
 
 // 5. SHOPPING CART LOGIC
 function addToCart(productId) {
-    // Need to find product in BOTH lists
-    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
-    const allProducts = [...products, ...userProducts];
-
-    const product = allProducts.find(p => p.id === productId);
+    const product = products.find(p => p.id === productId);
     if (!product) return;
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -371,7 +397,6 @@ if (document.getElementById('cartTable')) {
 }
 
 // 6. CHECKOUT LOGIC (checkout.html)
-// A. Load Summary
 if (document.getElementById('checkout-items')) {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const itemList = document.getElementById('checkout-items');
@@ -396,7 +421,6 @@ if (document.getElementById('checkout-items')) {
     }
 }
 
-// B. Confirm Order
 const checkoutForm = document.getElementById('checkoutForm');
 if (checkoutForm) {
     checkoutForm.addEventListener('submit', function (e) {
@@ -418,7 +442,7 @@ if (checkoutForm) {
             items: cart,
             total: total,
             status: 'Pending',
-            userEmail: user.email, // Link order to user
+            userEmail: user.email,
             shipping: {
                 name: document.getElementById('shipName').value,
                 phone: document.getElementById('shipPhone').value,
@@ -427,12 +451,10 @@ if (checkoutForm) {
             }
         };
 
-        // Save to "All Orders"
         let allOrders = JSON.parse(localStorage.getItem('allOrders')) || [];
         allOrders.push(newOrder);
         localStorage.setItem('allOrders', JSON.stringify(allOrders));
 
-        // Clear Cart
         localStorage.removeItem('cart');
 
         alert("Order Placed Successfully! Order ID: " + newOrder.id);
