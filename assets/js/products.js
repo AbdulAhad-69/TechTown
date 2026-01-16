@@ -188,8 +188,7 @@ if (grid) {
     if (urlSearch && searchBar) {
         searchBar.value = urlSearch;
         filterAndSort();
-    } else if (urlCategory) {
-        // 2. If Category found, check the sidebar box & filter
+    } else if (urlCategory) {  // 2. If Category found, check the sidebar box & filter
         const checkboxes = document.querySelectorAll('.filter-cat');
         checkboxes.forEach(cb => {
             if (cb.value === urlCategory) {
@@ -239,8 +238,15 @@ if (detailContainer) {
                 <p style="margin-top: 10px;">${product.desc}</p>
                 
                 <div style="margin-top: 30px;">
-                    <button class="btn-buy" onclick="addToCart(${product.id})" style="background-color: var(--primary-orange); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer;">Buy Now</button>
-                    <button class="btn-chat" style="border: 1px solid var(--secondary-dark); background:white; color: var(--secondary-dark); padding: 15px 20px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-left: 10px;">Chat with Seller</button>
+                    <button class="btn-cart" onclick="addToCart(${product.id})" 
+                        style="border: 2px solid var(--primary-orange); background:white; color: var(--primary-orange); padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-right: 10px;">
+                        Add to Cart
+                    </button>
+                    
+                    <button class="btn-buy" onclick="buyNow(${product.id})" 
+                        style="background-color: var(--primary-orange); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer;">
+                        Buy Now
+                    </button>
                 </div>
             </div>
             ${specsHTML}
@@ -268,43 +274,14 @@ document.addEventListener('DOMContentLoaded', function () {
             directUserLink.title = `Logged in as ${user.name}`;
         }
     }
-
-    // 7. HOMEPAGE LOGIC (Dynamic Index)
-    const homeSmartphones = document.getElementById('home-smartphones');
-    const homeLaptops = document.getElementById('home-laptops');
-
-    if (homeSmartphones || homeLaptops) {
-        function renderHomeCategory(container, category, limit) {
-            if (!container) return;
-            const filtered = products.filter(p => p.category === category).slice(0, limit);
-
-            if (filtered.length === 0) {
-                container.innerHTML = `<p>No items found.</p>`;
-                return;
-            }
-
-            container.innerHTML = filtered.map(p => `
-                <a href="product-details.html?id=${p.id}" class="product-card" style="text-decoration:none; color:inherit;">
-                    <div class="product-img">
-                        <img src="${p.image}" alt="${p.name}">
-                    </div>
-                    <div class="product-info">
-                        <h3>${p.name}</h3>
-                        <div class="product-meta">Starting from</div>
-                        <div class="product-price">৳ ${p.price.toLocaleString()}</div>
-                    </div>
-                </a>
-            `).join('');
-        }
-
-        renderHomeCategory(homeSmartphones, 'Smartphones', 5);
-        renderHomeCategory(homeLaptops, 'Laptops', 5);
-    }
 });
 
 // 5. SHOPPING CART LOGIC
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+function addToCart(productId, showAlert = true) {
+    const userProducts = JSON.parse(localStorage.getItem('userProducts')) || [];
+    const allProducts = [...products, ...userProducts];
+    
+    const product = allProducts.find(p => p.id === productId);
     if (!product) return;
 
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -318,13 +295,31 @@ function addToCart(productId) {
             name: product.name,
             price: product.price,
             image: product.image,
-            quantity: 1
+            quantity: 1,
+            sellerEmail: product.sellerEmail || "system"
         });
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`${product.name} added to cart!`);
+    
+    // 1. Update the navbar number immediately
     updateCartCount();
+
+    // 2. Show alert ONLY if requested (Not silent)
+    if(showAlert) {
+        // Small timeout allows the UI to update the number before the alert freezes the screen
+        setTimeout(() => {
+            alert(`${product.name} added to cart!`);
+        }, 10);
+    }
+}
+
+// New Buy Now Function
+function buyNow(productId) {
+    // Call addToCart with 'false' to skip the alert
+    addToCart(productId, false); 
+    // Redirect immediately to checkout
+    window.location.href = "checkout.html"; 
 }
 
 function updateCartCount() {
@@ -460,4 +455,36 @@ if (checkoutForm) {
         alert("Order Placed Successfully! Order ID: " + newOrder.id);
         window.location.href = "dashboard.html";
     });
+}
+
+// 7. HOMEPAGE LOGIC (Dynamic Index)
+const homeSmartphones = document.getElementById('home-smartphones');
+const homeLaptops = document.getElementById('home-laptops');
+
+if (homeSmartphones || homeLaptops) {
+    function renderHomeCategory(container, category, limit) {
+        if (!container) return;
+        const filtered = products.filter(p => p.category === category).slice(0, limit);
+
+        if (filtered.length === 0) {
+            container.innerHTML = `<p>No items found.</p>`;
+            return;
+        }
+
+        container.innerHTML = filtered.map(p => `
+                <a href="product-details.html?id=${p.id}" class="product-card" style="text-decoration:none; color:inherit;">
+                    <div class="product-img">
+                        <img src="${p.image}" alt="${p.name}">
+                    </div>
+                    <div class="product-info">
+                        <h3>${p.name}</h3>
+                        <div class="product-meta">Starting from</div>
+                        <div class="product-price">৳ ${p.price.toLocaleString()}</div>
+                    </div>
+                </a>
+            `).join('');
+    }
+
+    renderHomeCategory(homeSmartphones, 'Smartphones', 5);
+    renderHomeCategory(homeLaptops, 'Laptops', 5);
 }
