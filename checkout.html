@@ -18,16 +18,12 @@
             </div>
 
             <div class="search-container">
-                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                <form action="products.html" method="GET" class="search-form">
                     <input type="text" name="search" class="search-bar" placeholder="Search devices..."
                         autocomplete="off">
-
-                    <button type="submit"
-                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                    <button type="submit" class="search-btn">
                         <i class="fas fa-search"></i>
                     </button>
-
-                    <div class="search-suggestions"></div>
                 </form>
             </div>
 
@@ -36,7 +32,7 @@
             </ul>
 
             <div class="nav-icons">
-                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count" style="font-size: 14px; font-weight: bold;">(0)</span></a>
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count" class="cart-count">(0)</span></a>
                 <a href="login.html" class="fas fa-user"></a>
             </div>
         </nav>
@@ -62,8 +58,7 @@
 
                 <div class="form-group">
                     <label>City</label>
-                    <select id="shipCity"
-                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;">
+                    <select id="shipCity" class="form-group select-input">
                         <option value="Dhaka">Dhaka</option>
                         <option value="Gazipur">Gazipur</option>
                         <option value="Mymensingh">Mymensingh</option>
@@ -75,7 +70,7 @@
 
                 <div class="form-group">
                     <label>Full Address</label>
-                    <textarea id="shipAddress" rows="3" placeholder="House #, Road #, Area" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;" required></textarea>
+                    <textarea id="shipAddress" rows="3" placeholder="House #, Road #, Area" class="form-group textarea-input" required></textarea>
                 </div>
 
                 <div class="form-group" style="margin-top: 30px;">
@@ -136,12 +131,12 @@
                     <span>Delivery Fee</span>
                     <span>৳ 120</span>
                 </div>
-                <div class="summary-item total" style="margin-top: 10px; font-size: 18px; font-weight: bold; color: var(--primary-orange);">
+                <div class="summary-item total checkout-total">
                     <span>Total to Pay</span>
                     <span id="checkout-total">৳ 0</span>
                 </div>
 
-                <button type="submit" class="auth-btn" style="margin-top: 20px;">Confirm Order</button>
+                <button type="submit" class="auth-btn">Confirm Order</button>
             </div>
 
         </form>
@@ -154,13 +149,34 @@
                 <ul>
                     <li><a href="about.html">Why TechTown?</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="stores.html">Store Locator</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Contact</h4>
                 <ul>
                     <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
-                    <li>Mirpur, Dhaka-1216</li>
+                    <li><a href="tel:+8801969067909">+880 1969 067 909</a></li>
+                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
                 </ul>
             </div>
         </div>

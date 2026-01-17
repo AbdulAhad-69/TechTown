@@ -21,16 +21,12 @@
             </div>
 
             <div class="search-container">
-                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                <form action="products.html" method="GET" class="search-form">
                     <input type="text" name="search" class="search-bar" placeholder="Search devices..."
                         autocomplete="off">
-
-                    <button type="submit"
-                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                    <button type="submit" class="search-btn">
                         <i class="fas fa-search"></i>
                     </button>
-
-                    <div class="search-suggestions"></div>
                 </form>
             </div>
 
@@ -39,8 +35,7 @@
             </ul>
 
             <div class="nav-icons">
-                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count"
-                        style="font-size: 14px; font-weight: bold;">(0)</span></a>
+                <a href="cart.html" class="fas fa-shopping-cart"><span id="cart-count" class="cart-count">(0)</span></a>
                 <a href="login.html" class="fas fa-user"></a>
             </div>
         </nav>
@@ -54,7 +49,7 @@
         </div>
     </section>
 
-    <section class="section-container" style="margin-top: 60px;">
+    <section class="section-container">
         <div class="about-grid">
             <div class="about-text">
                 <h2 class="section-title">The Problem We Solve</h2>
@@ -67,7 +62,7 @@
                     business.</p>
             </div>
             <div class="about-image">
-                <i class="fas fa-handshake" style="font-size: 150px; color: #f57224; opacity: 0.8;"></i>
+                <i class="fas fa-handshake about-handshake-icon"></i>
             </div>
         </div>
     </section>
@@ -77,31 +72,31 @@
             <h2 class="section-title">Who We Serve</h2>
         </div>
 
-        <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-            <div class="product-card" style="text-align: center; padding: 30px;">
-                <div style="font-size: 40px; color: #2e2e2e; margin-bottom: 15px;"><i class="fas fa-user"></i></div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="about-icon"><i class="fas fa-user"></i></div>
                 <h3>Everyday Buyers</h3>
-                <p style="font-size: 14px; color: #666;">People who want reliable electronics at fair prices but fear
+                <p>People who want reliable electronics at fair prices but fear
                     being misled about a device's true condition.</p>
             </div>
 
-            <div class="product-card" style="text-align: center; padding: 30px;">
-                <div style="font-size: 40px; color: #2e2e2e; margin-bottom: 15px;"><i class="fas fa-user-tag"></i></div>
+            <div class="product-card">
+                <div class="about-icon"><i class="fas fa-user-tag"></i></div>
                 <h3>Individual Sellers</h3>
-                <p style="font-size: 14px; color: #666;">Casual sellers dealing in used electronics who need a
+                <p>Casual sellers dealing in used electronics who need a
                     professional platform to build trust with buyers.</p>
             </div>
 
-            <div class="product-card" style="text-align: center; padding: 30px;">
-                <div style="font-size: 40px; color: #2e2e2e; margin-bottom: 15px;"><i class="fas fa-store"></i></div>
+            <div class="product-card">
+                <div class="about-icon"><i class="fas fa-store"></i></div>
                 <h3>Business Vendors</h3>
-                <p style="font-size: 14px; color: #666;">Shops and repair businesses that need inventory management,
+                <p>Shops and repair businesses that need inventory management,
                     branding, and analytics tools.</p>
             </div>
         </div>
     </section>
 
-    <section class="section-container" style="margin-bottom: 80px;">
+    <section class="section-container">
         <div class="section-header">
             <h2 class="section-title">Meet the Team</h2>
         </div>
@@ -109,25 +104,23 @@
         <div class="product-grid">
             <div class="product-card">
                 <div class="product-img">
-                    <img src="assets/images/abdul-ahad.JPG" alt="Sheikh Abdul Ahad Bin Sayeed"
-                        style="width: 130px; height: 130px; border-radius: 50%;">
+                    <img src="assets/images/abdul-ahad.JPG" alt="Sheikh Abdul Ahad Bin Sayeed" class="team-img">
                 </div>
-                <div class="product-info" style="text-align: center;">
+                <div class="product-info">
                     <h3>Sheikh Abdul Ahad Bin Sayeed</h3>
                     <div class="product-meta">ID: 241071052</div>
-                    <div class="product-price" style="font-size: 14px; color: #555;">Team Member (Owner)</div>
+                    <div class="product-price">Team Member (Owner)</div>
                 </div>
             </div>
 
             <div class="product-card">
                 <div class="product-img">
-                    <img src="assets/images/apple2.jpg" alt="Apple Pramanik"
-                        style="width: 130px; height: 130px; border-radius: 50%;">
+                    <img src="assets/images/apple2.jpg" alt="Apple Pramanik" class="team-img">
                 </div>
-                <div class="product-info" style="text-align: center;">
+                <div class="product-info">
                     <h3>Apple Pramanik</h3>
                     <div class="product-meta">ID: 241071022</div>
-                    <div class="product-price" style="font-size: 14px; color: #555;">Team Member (Khoyrati)</div>
+                    <div class="product-price">Team Member (Khoyrati)</div>
                 </div>
             </div>
         </div>

@@ -237,15 +237,12 @@
             <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
 
             <div class="search-container">
-                <form action="products.html" method="GET" style="display: flex; width: 100%; position: relative;">
+                <form action="products.html" method="GET" class="search-form">
                     <input type="text" name="search" class="search-bar" placeholder="Search devices..."
                         autocomplete="off">
-
-                    <button type="submit"
-                        style="background: none; border: none; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888;">
+                    <button type="submit" class="search-btn">
                         <i class="fas fa-search"></i>
                     </button>
-                    <div class="search-suggestions"></div>
                 </form>
             </div>
 
@@ -273,7 +270,7 @@
                         Overview</a></li>
                 <li><a href="#" onclick="switchTab('orders')"><i class="fas fa-box"></i> My Orders</a></li>
                 <li><a href="#" onclick="switchTab('settings')"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="#" onclick="logout()" style="color: #ff4d4d;"><i class="fas fa-sign-out-alt"></i>
+                <li><a href="#" onclick="logout()" class="logout-link"><i class="fas fa-sign-out-alt"></i>
                         Logout</a></li>
             </ul>
         </aside>
@@ -331,8 +328,45 @@
     </div>
 
     <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul>
+                    <li><a href="about.html">Why TechTown?</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="refund.html">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="stores.html">Store Locator</a></li>
+                    <li><a href="tracking.html">Track Order</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="mailto:info@techtown.com.bd">info@techtown.com.bd</a></li>
+                    <li><a href="tel:+8801969067909">+880 1969 067 909</a></li>
+                    <li>Mirpur, Dhaka-1216, Bangladesh</li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <ul>
+                    <li><a href="https://www.facebook.com/techtown">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/techtown">Instagram</a></li>
+                    <li><a href="https://www.linkedin.com/company/techtown">LinkedIn</a></li>
+                </ul>
+            </div>
+        </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 TechTown BD Ltd.</p>
+            <p>&copy; 2026 TechTown BD Ltd. No Rights Reserved.</p>
         </div>
     </footer>
 

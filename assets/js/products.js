@@ -125,10 +125,12 @@ const products = [
 const grid = document.getElementById('product-grid');
 
 if (grid) {
+    const countElement = document.getElementById('count');
+    
     function render(items) {
         if (items.length === 0) {
-            grid.innerHTML = '<p style="text-align:center; grid-column:1/-1;">No products found.</p>';
-            document.getElementById('count').innerText = 0;
+            grid.innerHTML = '<p class="no-products">No products found.</p>';
+            if (countElement) countElement.innerText = '0';
             return;
         }
 
@@ -144,7 +146,7 @@ if (grid) {
                 </div>
             </a>
         `).join('');
-        document.getElementById('count').innerText = items.length;
+        if (countElement) countElement.innerText = items.length;
     }
 
     function filterAndSort() {
@@ -172,13 +174,26 @@ if (grid) {
         render(filtered);
     }
 
-    // Event Listeners
-    document.querySelectorAll('input').forEach(i => i.addEventListener('change', filterAndSort));
+    // Event Listeners - Use event delegation for better performance
+    const filterContainer = document.querySelector('.sidebar');
     const sortSelect = document.getElementById('sort-select');
-    if (sortSelect) sortSelect.addEventListener('change', filterAndSort);
-
     const searchBar = document.querySelector('.search-bar');
-    if (searchBar) searchBar.addEventListener('input', filterAndSort);
+    
+    if (filterContainer) {
+        filterContainer.addEventListener('change', (e) => {
+            if (e.target.matches('input[type="checkbox"], input[type="number"]')) {
+                filterAndSort();
+            }
+        });
+    }
+    
+    if (sortSelect) {
+        sortSelect.addEventListener('change', filterAndSort);
+    }
+    
+    if (searchBar) {
+        searchBar.addEventListener('input', filterAndSort);
+    }
 
     // Initial Load
     const params = new URLSearchParams(window.location.search);
@@ -226,27 +241,20 @@ if (detailContainer) {
 
         detailContainer.innerHTML = `
             <div class="details-img">
-                <img src="${product.image}" alt="${product.name}" style="mix-blend-mode: multiply;">
+                <img src="${product.image}" alt="${product.name}">
             </div>
             
             <div class="details-info">
-                <span style="background: var(--primary-orange); color: white; padding: 4px 10px; border-radius: 4px; font-size: 12px;">${product.condition}</span>
-                <h1 style="margin: 15px 0;">${product.name}</h1>
-                <h2 style="color: var(--primary-orange); margin-bottom: 20px;">৳ ${product.price.toLocaleString()}</h2>
+                <span class="condition-badge">${product.condition}</span>
+                <h1>${product.name}</h1>
+                <h2 class="details-price">৳ ${product.price.toLocaleString()}</h2>
                 
                 <p><strong>Category:</strong> ${product.category}</p>
-                <p style="margin-top: 10px;">${product.desc}</p>
+                <p class="product-description">${product.desc}</p>
                 
-                <div style="margin-top: 30px;">
-                    <button class="btn-cart" onclick="addToCart(${product.id})" 
-                        style="border: 2px solid var(--primary-orange); background:white; color: var(--primary-orange); padding: 15px 30px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-right: 10px;">
-                        Add to Cart
-                    </button>
-                    
-                    <button class="btn-buy" onclick="buyNow(${product.id})" 
-                        style="background-color: var(--primary-orange); color: white; border: none; padding: 15px 40px; font-size: 16px; font-weight: bold; border-radius: 6px; cursor: pointer;">
-                        Buy Now
-                    </button>
+                <div class="details-actions">
+                    <button class="btn-cart" onclick="addToCart(${product.id})">Add to Cart</button>
+                    <button class="btn-buy" onclick="buyNow(${product.id})">Buy Now</button>
                 </div>
             </div>
             ${specsHTML}
@@ -343,16 +351,16 @@ if (document.getElementById('cartTable')) {
             emptyMsg.style.display = 'block';
         } else {
             emptyMsg.style.display = 'none';
-            cart.forEach((item, index) => {
+            const rowsHTML = cart.map((item, index) => {
                 const itemTotal = item.price * item.quantity;
                 subtotal += itemTotal;
-                tbody.innerHTML += `
+                return `
                     <tr>
                         <td>
                             <div class="cart-product-info">
                                 <img src="${item.image}" alt="${item.name}">
                                 <div>
-                                    <h4 style="font-size:14px; margin-bottom:4px;">${item.name}</h4>
+                                    <h4 class="cart-item-name">${item.name}</h4>
                                     <small>ID: ${item.id}</small>
                                 </div>
                             </div>
@@ -365,7 +373,8 @@ if (document.getElementById('cartTable')) {
                         <td><button class="remove-btn" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button></td>
                     </tr>
                 `;
-            });
+            }).join('');
+            tbody.innerHTML = rowsHTML;
         }
         document.getElementById('sub-total').innerText = '৳ ' + subtotal.toLocaleString();
         document.getElementById('final-total').innerText = '৳ ' + (subtotal + 120).toLocaleString();
@@ -472,7 +481,7 @@ if (homeSmartphones || homeLaptops) {
         }
 
         container.innerHTML = filtered.map(p => `
-                <a href="product-details.html?id=${p.id}" class="product-card" style="text-decoration:none; color:inherit;">
+                <a href="product-details.html?id=${p.id}" class="product-card">
                     <div class="product-img">
                         <img src="${p.image}" alt="${p.name}">
                     </div>
