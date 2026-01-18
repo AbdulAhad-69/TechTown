@@ -227,6 +227,7 @@ header {
     max-width: 1400px;
     margin: 60px auto;
     padding: 0 5%;
+    flex: 1;
 }
 
 .section-header {
@@ -394,8 +395,8 @@ footer {
     margin-top: 50px;
     /* FIXED: Pushes content down from the header */
     padding: 0 5%;
-    min-height: 60vh;
     /* Ensures footer stays at bottom on empty pages */
+    flex: 1;
 }
 
 /* Sidebar Styles */
