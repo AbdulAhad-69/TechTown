@@ -220,7 +220,11 @@ $items_res = $conn->query($sql_items);
 
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
             <div class="nav-icons">
                 <a href="admin.php">Admin Panel</a>
                 <a href="dashboard.php">My Dashboard</a>

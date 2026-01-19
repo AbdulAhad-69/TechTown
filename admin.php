@@ -145,7 +145,11 @@ $all_orders = $conn->query($sql);
 
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
             <div class="nav-icons">
                 <a href="admin_products.php" style="color: var(--primary-orange); font-weight: bold; margin-right: 15px;">
                     <i class="fas fa-box"></i> Manage Products

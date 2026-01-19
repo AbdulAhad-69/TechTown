@@ -90,7 +90,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html">TechTown Admin</a></div>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
             <div class="nav-icons"><a href="admin.php">Back to Dashboard</a></div>
         </nav>
     </header>

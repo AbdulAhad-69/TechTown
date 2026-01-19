@@ -26,7 +26,7 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 <head>
     <meta charset="UTF-8">
     <title>Manage Products - TechTown</title>
-    
+
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="icon" href="assets/images/TechTownLogo1.png" type="image/png">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -111,7 +111,12 @@ $result = $conn->query("SELECT * FROM products ORDER BY id DESC");
 
     <header>
         <nav class="navbar">
-            <div class="logo"><a href="index.html">TechTown Admin</a></div>
+
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/TechTown Logo1.png" alt="TechTown Logo">
+                </a>
+            </div>
             <div class="nav-icons">
                 <a href="admin.php">Orders</a>
                 <a href="admin_products.php" style="color:var(--primary-orange);">Products</a>
