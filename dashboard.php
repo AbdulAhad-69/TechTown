@@ -271,7 +271,8 @@ foreach ($orders as $o) {
                 <li><a href="products.html">Shop</a></li>
             </ul>
             <div class="nav-icons">
-                <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                <a href="cart.html"><i class="fas fa-shopping-cart"><span id="cart-count"
+                        style="font-size: 14px; font-weight: bold;">(0)</span></i></a>
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </nav>

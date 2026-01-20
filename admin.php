@@ -154,7 +154,7 @@ $all_orders = $conn->query($sql);
                 <a href="admin_products.php" style="color: var(--primary-orange); font-weight: bold; margin-right: 15px;">
                     <i class="fas fa-box"></i> Manage Products
                 </a>
-                <a href="dashboard.php">My Dashboard</a>
+                <a href="dashboard.php"><i class="fas fa-dashboard"></i> Dashboard</a>
                 <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </nav>
