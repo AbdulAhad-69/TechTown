@@ -6,29 +6,29 @@ $message = "";
 
 // 2. Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
+    // trim() removes accidental extra spaces
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $phone = trim($_POST['phone']);
     $password = $_POST['password'];
 
     // 3. Simple Validation
     if (!empty($name) && !empty($email) && !empty($password)) {
 
-        // 4. Secure the data (Prevent SQL Injection)
-        $name = $conn->real_escape_string($name);
-        $email = $conn->real_escape_string($email);
-        $phone = $conn->real_escape_string($phone);
-
-        // 5. Encrypt the password (Security Best Practice)
+        // 4. Encrypt the password (Your original code did this well)
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // 6. SQL Query to insert user
-        $sql = "INSERT INTO users (name, email, phone, password, role) VALUES ('$name', '$email', '$phone', '$hashed_password', 'customer')";
+        // 5. SECURE: Use Prepared Statements to prevent SQL Injection
+        $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password, role) VALUES (?, ?, ?, ?, 'customer')");
+        // "ssss" means we are inserting 4 Strings
+        $stmt->bind_param("ssss", $name, $email, $phone, $hashed_password);
 
-        if ($conn->query($sql) === TRUE) {
+        // Execute the statement safely
+        if ($stmt->execute()) {
             $message = "<div class='success-msg'>Account created successfully! <a href='login.php'>Login Now</a></div>";
         } else {
-            $message = "<div class='error-msg'>Error: " . $conn->error . "</div>";
+            // If it fails, it is usually because the email is already taken
+            $message = "<div class='error-msg'>Error: Could not create account. This email might already be registered.</div>";
         }
     } else {
         $message = "<div class='error-msg'>Please fill all fields.</div>";
@@ -65,16 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
     <header>
         <nav class="navbar">
             <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>
-
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="products.html">Shop</a></li>
             </ul>
-
         </nav>
     </header>
 
@@ -114,7 +111,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </div>
-
 </body>
 
 </html>

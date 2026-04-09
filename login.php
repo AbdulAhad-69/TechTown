@@ -6,17 +6,20 @@ require 'db.php';
 $message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $conn->real_escape_string($_POST['email']);
+    // trim() removes accidental spaces before or after the email
+    $email = trim($_POST['email']);
     $password = $_POST['password'];
 
-    // 2. Check if user exists
-    $sql = "SELECT * FROM users WHERE email='$email'";
-    $result = $conn->query($sql);
+    // 2. SECURE: Check if user exists using PREPARED STATEMENT
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email); // "s" means the ? is a String
+    $stmt->execute();
+    $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
 
-        // 3. Verify Password
+        // 3. Verify Password (Your original hash check was already perfect)
         if (password_verify($password, $user['password'])) {
             // Success! Create a "Session"
             $_SESSION['user_id'] = $user['id'];
@@ -58,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
     <header>
         <nav class="navbar">
             <div class="logo"><a href="index.html"><img src="assets/images/TechTown Logo1.png" alt="Logo"></a></div>

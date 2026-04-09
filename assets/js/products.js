@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchProducts();
 });
 
-// 2. FETCH PRODUCTS FROM DATABASE (API)
+// 2. FETCH PRODUCTS FROM DATABASE (API) - UPGRADED WITH CART SYNC
 async function fetchProducts() {
     try {
         const response = await fetch('api_products.php');
@@ -28,6 +28,50 @@ async function fetchProducts() {
             p.stock = Number(p.stock);
             return p;
         });
+
+        // ---------------------------------------------------------
+        // ENTERPRISE FIX: Sync Local Cart with Live Database Data
+        // ---------------------------------------------------------
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let cartChanged = false;
+
+        // Pass 1: Update prices and cap quantities at available stock
+        cart = cart.map(item => {
+            const liveProduct = products.find(p => p.id === item.id);
+            if (liveProduct) {
+                // Fix: Admin changed price
+                if (item.price !== liveProduct.price) {
+                    item.price = liveProduct.price;
+                    cartChanged = true;
+                }
+                // Fix: Stock dropped
+                if (item.quantity > liveProduct.stock) {
+                    item.quantity = liveProduct.stock; // If stock is 0, this becomes 0
+                    cartChanged = true;
+                }
+                return item;
+            }
+            return item;
+        });
+
+        // Pass 2: The "Ghost" Sweeper
+        // Remove items if they were deleted from DB OR if their stock hit 0
+        const originalLength = cart.length;
+        cart = cart.filter(item => {
+            const existsInDB = products.some(p => p.id === item.id);
+            const hasValidQuantity = item.quantity > 0;
+            return existsInDB && hasValidQuantity;
+        });
+
+        if (cart.length !== originalLength) cartChanged = true;
+
+        // Save and re-render if anything was automatically fixed
+        if (cartChanged) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            if (document.getElementById('cartTable')) renderCart();
+            updateCartCount();
+        }
+        // ---------------------------------------------------------
 
         // Initialize Shop/Details Pages
         initPage();
@@ -95,24 +139,50 @@ function renderCart() {
     if (finalTotalEl) finalTotalEl.innerText = '৳ ' + (subtotal + 120).toLocaleString();
 }
 
-// 5. HELPER FUNCTIONS
+// 5. HELPER FUNCTIONS - UPGRADED & SECURED
 window.updateCartQty = function (index, newQty) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (newQty < 1) newQty = 1;
-    cart[index].quantity = parseInt(newQty);
+
+    // THE FIX: Catch empty boxes (NaN) and force them to at least 1
+    newQty = parseInt(newQty);
+    if (isNaN(newQty) || newQty < 1) {
+        newQty = 1;
+    }
+
+    let item = cart[index];
+
+    // SECURE: Check against live stock
+    if (products.length > 0) {
+        const liveProduct = products.find(p => p.id === item.id);
+        if (liveProduct && newQty > liveProduct.stock) {
+            alert(`Sorry, we only have ${liveProduct.stock} of "${liveProduct.name}" in stock.`);
+            newQty = liveProduct.stock; // Force the number back down to max available
+        }
+    }
+
+    cart[index].quantity = newQty;
     localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
+
+    // Re-render the cart so the input box visually corrects itself
+    if (document.getElementById('cartTable')) {
+        renderCart();
+    }
     updateCartCount();
 };
 
+// The Trash Can Button
 window.removeCartItem = function (index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    renderCart();
+
+    if (document.getElementById('cartTable')) {
+        renderCart();
+    }
     updateCartCount();
 };
 
+// The Cart Badge Counter
 function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const count = cart.reduce((sum, i) => sum + i.quantity, 0);
